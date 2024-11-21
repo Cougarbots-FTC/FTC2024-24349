@@ -15,8 +15,9 @@ public class Team24349AutoBlue extends LinearOpMode{
     public void runOpMode() {
         robot.Map(hardwareMap);
         waitForStart();
-
-        //write code here
+        
+        sleep(1600);
+        // write code here
 
 
     }

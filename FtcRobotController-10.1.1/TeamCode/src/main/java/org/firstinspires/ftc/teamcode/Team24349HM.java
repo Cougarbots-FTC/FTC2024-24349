@@ -6,16 +6,19 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
 public class Team24349HM {
+    // declare our 4 drive motors
     public DcMotor DriveRightBack = null;
     public DcMotor DriveLeftBack = null;
     public DcMotor DriveLeftFront = null;
     public DcMotor DriveRightFront = null;
+    // declaring any other motors (leftArm, RightArm, intake, linearMotion)
     public DcMotor RightSlide = null;
     public DcMotor LeftSlide = null;
     public DcMotor RightArm = null;
     public DcMotor LeftArm = null;
 
-    public Servo Servo = null;
+    // can select a certain area, and ctrl + / will comment it out
+    //public Servo Servo = null;
 //I fixed it
 
 
@@ -32,6 +35,8 @@ public class Team24349HM {
     //FIX AND USE IT
     public void Map(HardwareMap hardwareMap)
     {
+        // telling the control hub by initializing the motors
+        // it is case - sensitive
         hwMap = hardwareMap;
         DriveLeftFront = hwMap.get(DcMotor.class,"DriveLeftFront"); //0
         DriveRightFront = hwMap.get(DcMotor.class,"DriveRightFront"); //1
@@ -39,6 +44,8 @@ public class Team24349HM {
         DriveRightBack = hwMap.get(DcMotor.class,"DriveRightBack"); //3
         //   Lights = hwMap.get(RevBlinkinLedDriver.class,"Lights");
 
+        // default motor direction is forward
+        // if you want your robot to slide, then you would put it on post mode
         DriveLeftFront.setDirection(DcMotor.Direction.FORWARD);
         DriveLeftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         DriveLeftFront.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -82,7 +89,8 @@ public class Team24349HM {
         LeftArm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         LeftArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        Servo = hwMap.get(Servo.class, "Servo");
+        // a class for a possible servo
+        //Servo = hwMap.get(Servo.class, "Servo");
 
         //Arm = hwMap.get(DcMotor.class, "Arm");
 
