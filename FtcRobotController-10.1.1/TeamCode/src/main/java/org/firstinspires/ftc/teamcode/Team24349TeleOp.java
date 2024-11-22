@@ -30,7 +30,7 @@ public class Team24349TeleOp extends LinearOpMode {
         waitForStart();
 
         while (opModeIsActive()) {
-            // a turnary operator
+            // a ternary operator
             // a slow button for the driver
             boolean speedslow = gamepad1.right_bumper;
             // when the right bumper is held down, it will go down to 50 percent of its speed
