@@ -61,22 +61,24 @@ public class MightyMouseTeleOp extends LinearOpMode {
             double armRotatorUp = gamepad1.left_trigger;
             if (armRotatorUp > 0) {
                 robot.armRotator.setPower(armRotatorUp);
+                robot.armRotator2.setPower(armRotatorUp);
             }
             double armRotatorDown = gamepad1.right_trigger;
             if (armRotatorDown > 0) {
                 robot.armRotator.setPower(-1 * armRotatorDown);
+                robot.armRotator2.setPower(-1 * armRotatorDown);
             }
 
 
-            if (gamepad1.y) {
-                robot.claw.setPower(1);//open
+            if (gamepad1.a) {
+                robot.claw.setPosition(1);//open
             }
-            if (gamepad1.x) {
-                robot.claw.setPower(-1); //close
+            if (gamepad1.b) {
+                robot.claw.setPosition(0); //close
             }
-            //telemetry.addData("Claw", robot.claw.getPosition());
+            telemetry.addData("Claw", robot.claw.getPosition());
 
-            //telemetry.update();
+            telemetry.update();
 
         }
     }
