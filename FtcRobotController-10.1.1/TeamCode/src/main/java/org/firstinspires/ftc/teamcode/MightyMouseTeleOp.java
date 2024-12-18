@@ -22,20 +22,41 @@ public class MightyMouseTeleOp extends LinearOpMode {
             boolean speedslow = gamepad1.right_bumper;
             double mag = speedslow ? 0.5 : 1.0;
 
+            /*
             double y = gamepad1.left_stick_y; // Remember, this is reversed!
             double x = -gamepad1.left_stick_x * 1.1; // Counteract imperfect strafing
             double rx = -gamepad1.right_stick_x;
 
-
             double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), 1.5);
             double frontLeftPower = (-y + x + rx) / denominator;
-            //double backLeftPower = (y - x + rx) / denominator;
+            double backLeftPower = (y - x + rx) / denominator;
             double frontRightPower = (y - x - rx) / denominator;
-            //double backRightPower = (y + x - rx) / denominator;
-
-
+            double backRightPower = (y + x - rx) / denominator;
             robot.driveFrontLeft.setPower(frontLeftPower * mag);
             robot.driveFrontRight.setPower(frontRightPower * mag);
+
+            */
+
+            double yPower = gamepad1.left_stick_y;
+
+            if (yPower != 0) {
+                robot.driveFrontLeft.setPower(-yPower * mag);
+                robot.driveFrontRight.setPower(yPower * mag);
+            } else {
+                robot.driveFrontLeft.setPower(0);
+                robot.driveFrontRight.setPower(0);
+            }
+            double xPower = gamepad1.right_stick_x;
+            if (xPower > 0 ) {
+                robot.driveFrontLeft.setPower(xPower * mag);
+            } else {
+                robot.driveFrontLeft.setPower(0);
+            }
+            if (xPower < 0) {
+                robot.driveFrontRight.setPower(xPower * mag);
+            } else {
+                robot.driveFrontRight.setPower(0);
+            }
 
             double armRotatorUp = gamepad1.left_trigger;
             if (armRotatorUp > 0) {
@@ -47,14 +68,15 @@ public class MightyMouseTeleOp extends LinearOpMode {
             }
 
 
-            if(gamepad1.y) {
-                robot.claw.setPosition(0.5);//open
-            } else {
-                robot.claw.setPosition(0); //close
+            if (gamepad1.y) {
+                robot.claw.setPower(1);//open
             }
-            telemetry.addData("RightFront", robot.claw.getPosition());
+            if (gamepad1.x) {
+                robot.claw.setPower(-1); //close
+            }
+            //telemetry.addData("Claw", robot.claw.getPosition());
 
-            telemetry.update();
+            //telemetry.update();
 
         }
     }

@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -12,7 +13,7 @@ public class MightyMouseHM {
     public DcMotor driveFrontLeft = null;
 
     public DcMotor armRotator = null;
-    public Servo claw = null;
+    public CRServo claw = null;
 
     HardwareMap hwMap = null;
     public void Map(HardwareMap hardwareMap) {
@@ -36,7 +37,7 @@ public class MightyMouseHM {
         armRotator.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         armRotator.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        claw = hwMap.get(Servo.class, "claw");
+        claw = hwMap.get(CRServo.class, "claw");
     }
 
 }
