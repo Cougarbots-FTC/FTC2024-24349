@@ -15,6 +15,7 @@ public class MightyMouseHM {
     public DcMotor armRotator = null;
     public DcMotor armRotator2 = null;
     public Servo claw = null;
+    public Servo wrist = null;
 
     HardwareMap hwMap = null;
     public void Map(HardwareMap hardwareMap) {
@@ -24,6 +25,10 @@ public class MightyMouseHM {
         driveFrontLeft = hwMap.get(DcMotor.class, "driveFrontLeft");   // 1
         armRotator = hwMap.get(DcMotor.class, "armRotator");   // 2
         armRotator2 = hwMap.get(DcMotor.class, "armRotator2");   // 3
+
+
+        claw = hwMap.get(Servo.class, "claw"); // 4
+        wrist = hwMap.get(Servo.class, "wrist"); // 5
 
         // default motor direction is forward
         // if you want your robot to slide, then you would put it on post mode
@@ -42,7 +47,7 @@ public class MightyMouseHM {
         armRotator2.setDirection(DcMotor.Direction.FORWARD);
         armRotator2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         armRotator2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        claw = hwMap.get(Servo.class, "claw");
+
     }
 
 }
