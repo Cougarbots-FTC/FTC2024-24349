@@ -33,17 +33,21 @@ public class MightyMouseTeleOp extends LinearOpMode {
             }
             double xPower = gamepad1.right_stick_x;
             if (xPower < 0 ) {
-                robot.driveFrontLeft.setPower(xPower * mag);
-            } else {
-                robot.driveFrontLeft.setPower(0);
-            }
-            if (xPower > 0) {
+                robot.driveFrontLeft.setPower(-xPower * mag);
                 robot.driveFrontRight.setPower(xPower * mag);
             } else {
+                robot.driveFrontLeft.setPower(0);
                 robot.driveFrontRight.setPower(0);
             }
+            if (xPower > 0) {
+                robot.driveFrontRight.setPower(-xPower * mag);
+                robot.driveFrontLeft.setPower(xPower * mag);
+            } else {
+                robot.driveFrontRight.setPower(0);
+                robot.driveFrontLeft.setPower(0);
+            }
 
-            double armRotatorUp = gamepad1.left_trigger;
+            double armRotatorUp = gamepad2.left_trigger;
             if (armRotatorUp > 0.1) {
                 robot.armRotator.setPower(armRotatorUp);
                 robot.armRotator2.setPower(armRotatorUp);
@@ -51,7 +55,7 @@ public class MightyMouseTeleOp extends LinearOpMode {
                 robot.armRotator.setPower(0);
                 robot.armRotator2.setPower(0);
             }
-            double armRotatorDown = gamepad1.right_trigger;
+            double armRotatorDown = gamepad2.right_trigger;
             if (armRotatorDown > 0.1) {
                 robot.armRotator.setPower(-1 * armRotatorDown);
                 robot.armRotator2.setPower(-1 * armRotatorDown);
@@ -61,17 +65,17 @@ public class MightyMouseTeleOp extends LinearOpMode {
             }
 
 
-            if (gamepad1.a) {
+            if (gamepad2.a) {
                 robot.claw.setPosition(1);//open
             }
-            if (gamepad1.b) {
+            if (gamepad2.b) {
                 robot.claw.setPosition(0); //close
             }
 
-            if (gamepad1.x) {
+            if (gamepad2.x) {
                 robot.wrist.setPosition(1); //open
             }
-            if (gamepad1.y) {
+            if (gamepad2.y) {
                 robot.wrist.setPosition(0); //close
             }
 
