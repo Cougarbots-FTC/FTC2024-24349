@@ -72,11 +72,11 @@ public class MightyMouseTeleOp extends LinearOpMode {
                 robot.claw.setPosition(0); //close
             }
 
-            if (gamepad2.x) {
-                robot.wrist.setPosition(1); //open
-            }
-            if (gamepad2.y) {
-                robot.wrist.setPosition(0); //close
+            double wristPower = -gamepad2.left_stick_y;
+            if (wristPower != 0) {
+                robot.wrist.setPower(wristPower); //open
+            } else {
+                robot.wrist.setPower(0);
             }
 
         }
