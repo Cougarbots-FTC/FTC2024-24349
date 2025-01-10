@@ -20,12 +20,12 @@ public class Team24349AutoBlue extends LinearOpMode{
         robot.driveFrontLeft.setPower(0.9);
 
 
-        sleep(1700);
+        sleep(900);
 
         robot.driveFrontLeft.setPower(0);
         robot.driveFrontRight.setPower(0.5);
 
-        sleep(1400);
+        sleep(1200);
 
         robot.driveFrontLeft.setPower(-0.9);
         robot.driveFrontRight.setPower(1);
