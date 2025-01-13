@@ -64,6 +64,7 @@ public class Team24349AutoBlue extends LinearOpMode{
 
         robot.claw.setPosition(1);
 
+        sleep(1000);
         // write code here
 
 
