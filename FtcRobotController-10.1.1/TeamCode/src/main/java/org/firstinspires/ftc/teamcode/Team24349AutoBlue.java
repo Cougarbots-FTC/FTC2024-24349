@@ -37,6 +37,7 @@ public class Team24349AutoBlue extends LinearOpMode{
         // will move backward at full power with a power of -1
         // can go higher than 1, but not suggested to put the strain on motors
 
+        /*
         // moves forward
         robot.driveFrontRight.setPower(-1);
         robot.driveFrontLeft.setPower(0.9);
@@ -68,6 +69,7 @@ public class Team24349AutoBlue extends LinearOpMode{
         robot.armRotator2.setPower(0);
 
         sleep(200);
+
         // for the arm, a negative power means going down (as this is how our HM is set)
         robot.armRotator.setPower(-0.8);
         robot.armRotator2.setPower(-0.8);
@@ -85,10 +87,179 @@ public class Team24349AutoBlue extends LinearOpMode{
         robot.claw.setPosition(1);
 
         sleep(1000);
+        */
 
         // write code here
 
+        // move forward
+        robot.driveFrontLeft.setPower(-0.9);
+        robot.driveFrontRight.setPower(1);
+        robot.armRotator.setPower(0);
+        robot.armRotator2.setPower(0);
+        sleep(100);
 
+        // turns toward the right
+        robot.driveFrontLeft.setPower(0.5);
+        robot.driveFrontRight.setPower(0);
+        sleep(900);
+
+        // lift the arm
+        robot.armRotator.setPower(0.8);
+        robot.armRotator2.setPower(0.8);
+        robot.driveFrontLeft.setPower(0);
+        robot.driveFrontRight.setPower(0);
+        sleep(600);
+
+        // tilt wrist down
+        robot.wrist.setPower(0.5);
+        robot.armRotator.setPower(0);
+        robot.armRotator2.setPower(0);
+        sleep(200);
+
+        // moves backward
+        robot.driveFrontLeft.setPower(1);
+        robot.driveFrontRight.setPower(-0.9);
+        robot.armRotator.setPower(0);
+        robot.armRotator2.setPower(0);
+        sleep(500);
+// new location
+        // open the claw
+        robot.claw.setPosition(1);
+        sleep(1000);
+
+        // close the claw
+        robot.claw.setPosition(0);
+        sleep(1000);
+
+        // move forward
+        robot.driveFrontLeft.setPower(-0.9);
+        robot.driveFrontRight.setPower(1);
+        robot.armRotator.setPower(0);
+        robot.armRotator2.setPower(0);
+        sleep(100);
+
+        // turns toward the left
+        robot.driveFrontLeft.setPower(0);
+        robot.driveFrontRight.setPower(0.5);
+        sleep(1300);
+
+        // move forward
+        robot.driveFrontLeft.setPower(-0.9);
+        robot.driveFrontRight.setPower(1);
+        robot.armRotator.setPower(0);
+        robot.armRotator2.setPower(0);
+        sleep(500);
+
+        // turns toward the right
+        robot.driveFrontLeft.setPower(0.5);
+        robot.driveFrontRight.setPower(0);
+        sleep(900);
+
+        // move forward
+        robot.driveFrontLeft.setPower(-0.9);
+        robot.driveFrontRight.setPower(1);
+        robot.armRotator.setPower(0);
+        robot.armRotator2.setPower(0);
+        sleep(100);
+
+        // arm is going down
+        robot.armRotator.setPower(-0.8);
+        robot.armRotator2.setPower(-0.8);
+        robot.driveFrontLeft.setPower(0);
+        robot.driveFrontRight.setPower(0);
+        sleep(200);
+
+
+
+
+
+
+
+
+        /*
+
+        robot.driveFrontLeft.setPower(-0.9);
+        robot.driveFrontRight.setPower(1);
+        sleep(100);
+
+        // turns toward the left
+        robot.driveFrontLeft.setPower(0);
+        robot.driveFrontRight.setPower(0.5);
+        sleep(1300);
+
+        // lift the arm
+        robot.armRotator.setPower(0.8);
+        robot.armRotator2.setPower(0.8);
+        robot.driveFrontLeft.setPower(0);
+        robot.driveFrontRight.setPower(0);
+        sleep(600);
+
+        // drives forward
+        // usually setting power to 0 will make it stay where it is at
+        // but if there is too much force, then gravity will act
+        robot.driveFrontLeft.setPower(-0.9);
+        robot.driveFrontRight.setPower(1);
+        robot.armRotator.setPower(0);
+        robot.armRotator2.setPower(0);
+        sleep(200);
+
+        // arm is going down
+        robot.armRotator.setPower(-0.8);
+        robot.armRotator2.setPower(-0.8);
+        robot.driveFrontLeft.setPower(0);
+        robot.driveFrontRight.setPower(0);
+        sleep(200);
+
+        // tilt wrist down
+        robot.wrist.setPower(0.5);
+        robot.armRotator.setPower(0);
+        robot.armRotator2.setPower(0);
+        sleep(200);
+
+        // open the claw
+        robot.claw.setPosition(1);
+        sleep(1000);
+
+        // wrist moves to normal and robot moves back
+        robot.wrist.setPower(0);
+        robot.driveFrontLeft.setPower(1);
+        robot.driveFrontRight.setPower(-0.9);
+        robot.armRotator.setPower(0);
+        robot.armRotator2.setPower(0);
+        sleep(300);
+
+        // turns toward the right
+        robot.driveFrontLeft.setPower(0.5);
+        robot.driveFrontRight.setPower(0);
+        sleep(900);
+
+        // moves forward (hopefully towards the ascent area)
+        robot.driveFrontLeft.setPower(-0.9);
+        robot.driveFrontRight.setPower(1);
+        robot.armRotator.setPower(0);
+        robot.armRotator2.setPower(0);
+        sleep(300);
+
+        // turns toward the right
+        robot.driveFrontLeft.setPower(0.5);
+        robot.driveFrontRight.setPower(0);
+        sleep(900);
+
+        // move forward
+        robot.driveFrontLeft.setPower(-0.9);
+        robot.driveFrontRight.setPower(1);
+        robot.armRotator.setPower(0);
+        robot.armRotator2.setPower(0);
+        sleep(300);
+
+        // arm is going down
+        robot.armRotator.setPower(-0.8);
+        robot.armRotator2.setPower(-0.8);
+        robot.driveFrontLeft.setPower(0);
+        robot.driveFrontRight.setPower(0);
+        sleep(200);
+
+         */
     }
 
 }
