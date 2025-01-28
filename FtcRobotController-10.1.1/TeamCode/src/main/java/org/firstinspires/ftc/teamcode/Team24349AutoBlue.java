@@ -13,7 +13,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 // setting up the driver's hub option
 @Autonomous (name="Team24349Auto1ParkingBlue", group="24349")
 public class Team24349AutoBlue extends LinearOpMode{
-
+//fixing stuff
     // initializing a robot hardware map
     MightyMouseHM robot = new MightyMouseHM();
     ElapsedTime Time = new ElapsedTime();
