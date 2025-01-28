@@ -92,16 +92,16 @@ public class Team24349AutoBlue extends LinearOpMode{
         // write code here
 
         // move forward
-        robot.driveFrontLeft.setPower(-0.9);
-        robot.driveFrontRight.setPower(1);
+        robot.driveFrontLeft.setPower(0.9);
+        robot.driveFrontRight.setPower(-1);
         robot.armRotator.setPower(0);
         robot.armRotator2.setPower(0);
-        sleep(100);
+        sleep(300);
 
         // turns toward the right
-        robot.driveFrontLeft.setPower(0.5);
+        robot.driveFrontLeft.setPower(-0.5);
         robot.driveFrontRight.setPower(0);
-        sleep(900);
+        sleep(950);
 
         // lift the arm
         robot.armRotator.setPower(0.8);
@@ -110,18 +110,19 @@ public class Team24349AutoBlue extends LinearOpMode{
         robot.driveFrontRight.setPower(0);
         sleep(600);
 
-        // tilt wrist down
-        robot.wrist.setPower(0.5);
+        // lift the wrist up
+        robot.wrist.setPower(0.7);
         robot.armRotator.setPower(0);
         robot.armRotator2.setPower(0);
-        sleep(200);
+        sleep(600);
 
         // moves backward
-        robot.driveFrontLeft.setPower(1);
-        robot.driveFrontRight.setPower(-0.9);
+        robot.driveFrontLeft.setPower(-1);
+        robot.driveFrontRight.setPower(0.9);
+        robot.wrist.setPower(0.7);
         robot.armRotator.setPower(0);
         robot.armRotator2.setPower(0);
-        sleep(500);
+        sleep(300);
 // new location
         // open the claw
         robot.claw.setPosition(1);
@@ -132,15 +133,15 @@ public class Team24349AutoBlue extends LinearOpMode{
         sleep(1000);
 
         // move forward
-        robot.driveFrontLeft.setPower(-0.9);
-        robot.driveFrontRight.setPower(1);
+        robot.driveFrontLeft.setPower(0.9);
+        robot.driveFrontRight.setPower(-1);
         robot.armRotator.setPower(0);
         robot.armRotator2.setPower(0);
         sleep(100);
 
         // turns toward the left
         robot.driveFrontLeft.setPower(0);
-        robot.driveFrontRight.setPower(0.5);
+        robot.driveFrontRight.setPower(-0.5);
         sleep(1300);
 
         // move forward
