@@ -96,37 +96,44 @@ public class Team24349AutoBlue extends LinearOpMode{
         robot.driveFrontRight.setPower(-1);
         robot.armRotator.setPower(0);
         robot.armRotator2.setPower(0);
-        sleep(300);
+        sleep(305);
 
         // turns toward the right
         robot.driveFrontLeft.setPower(-0.5);
         robot.driveFrontRight.setPower(0);
         sleep(950);
 
+        // moves backward
+        robot.driveFrontLeft.setPower(-0.85);
+        robot.driveFrontRight.setPower(0.9);
+        sleep(64);
+
         // lift the arm
         robot.armRotator.setPower(0.8);
         robot.armRotator2.setPower(0.8);
         robot.driveFrontLeft.setPower(0);
         robot.driveFrontRight.setPower(0);
-        sleep(600);
+        sleep(525);
 
         // lift the wrist up
-        robot.wrist.setPower(0.7);
+        robot.wrist.setPower(-0.8);
         robot.armRotator.setPower(0);
         robot.armRotator2.setPower(0);
-        sleep(600);
+        sleep(1300);
 
         // moves backward
-        robot.driveFrontLeft.setPower(-1);
+        robot.driveFrontLeft.setPower(-0.85);
         robot.driveFrontRight.setPower(0.9);
-        robot.wrist.setPower(0.7);
+        robot.wrist.setPower(0);
         robot.armRotator.setPower(0);
         robot.armRotator2.setPower(0);
-        sleep(300);
+        sleep(64);
 // new location
         // open the claw
         robot.claw.setPosition(1);
         sleep(1000);
+        robot.driveFrontLeft.setPower(0);
+        robot.driveFrontRight.setPower(0);
 
         // close the claw
         robot.claw.setPosition(0);
@@ -141,7 +148,7 @@ public class Team24349AutoBlue extends LinearOpMode{
 
         // turns toward the left
         robot.driveFrontLeft.setPower(0);
-        robot.driveFrontRight.setPower(-0.5);
+        robot.driveFrontRight.setPower(-0.7);
         sleep(1300);
 
         // move forward
@@ -149,7 +156,7 @@ public class Team24349AutoBlue extends LinearOpMode{
         robot.driveFrontRight.setPower(1);
         robot.armRotator.setPower(0);
         robot.armRotator2.setPower(0);
-        sleep(500);
+        sleep(600);
 
         // turns toward the right
         robot.driveFrontLeft.setPower(0.5);
