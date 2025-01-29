@@ -23,7 +23,7 @@ public class Team24349TeleOp extends LinearOpMode {
         robot.DriveRightBack.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         robot.DriveLeftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.DriveLeftFront.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        robot.Servo.setPosition(0.4);
+        //robot.Servo.setPosition(0.4);
 
         int count = 0;
         //robot.Lights.setPattern(RevBlinkinLedDriver.BlinkinPattern.BEATS_PER_MINUTE_PARTY_PALETTE);
@@ -75,17 +75,17 @@ public class Team24349TeleOp extends LinearOpMode {
 
 
             if(gamepad2.y) {
-                robot.Servo.setPosition(0.4);//open
+                //robot.Servo.setPosition(0.4);//open
             }
 
             if(gamepad2.a) {
-                robot.Servo.setPosition(0);//close
+                //robot.Servo.setPosition(0);//close
             }
             telemetry.addData("RightFront", robot.DriveRightFront.getCurrentPosition());
             telemetry.addData("RightBack", robot.DriveRightBack.getCurrentPosition());
             telemetry.addData("LeftFront", robot.DriveLeftFront.getCurrentPosition());
             telemetry.addData("LeftBack", robot.DriveLeftBack.getCurrentPosition());
-            telemetry.addData("Servo Position", robot.Servo.getPosition());//getCurrentPosition?
+            //telemetry.addData("Servo Position", robot.Servo.getPosition());//getCurrentPosition?
             telemetry.update();
 
 
