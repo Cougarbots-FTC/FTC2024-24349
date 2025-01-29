@@ -4,12 +4,12 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@Autonomous (name="Team24349Auto1ParkingRed", group="24349")
-public class Team24349AutoRed extends LinearOpMode{
+@Autonomous (name="specimenAuto", group="24349")
+public class specimen extends LinearOpMode{
 
     MightyMouseHM robot = new MightyMouseHM();
     ElapsedTime Time = new ElapsedTime();
-    //double m = 0.30;
+    double multy = 0.30;
 
     @Override
     public void runOpMode() {
@@ -41,33 +41,11 @@ public class Team24349AutoRed extends LinearOpMode{
         robot.armRotator2.setPower(-0.75);
         sleep(475);
 
-        //opens the claw
         robot.claw.setPosition(1);
         robot.wrist.setPower(0);
         robot.armRotator.setPower(0);
         robot.armRotator2.setPower(0);
-        sleep(600);
-
-        //moves the wrist back to its default position
-        robot.wrist.setPower(-1);
-        sleep(1000);
-
-        //moves back
-        robot.wrist.setPower(0);
-        robot.driveFrontLeft.setPower(-0.45);
-        robot.driveFrontRight.setPower(0.5);
-        sleep(600);
-
-        //rotate to the right
-        robot.driveFrontLeft.setPower(-0.5);
-        robot.driveFrontRight.setPower(0);
-        sleep(600);
-
-        //forward int the net zone
-        robot.driveFrontLeft.setPower(0.45);
-        robot.driveFrontRight.setPower(-0.5);
-        sleep(1250);
-        //write code here
-
+        sleep(300);
     }
+
 }
