@@ -17,10 +17,9 @@ public class parkingAuto extends LinearOpMode{
         waitForStart();
 
         //moves forward into the net zone
-        robot.driveFrontLeft.setPower(0.85);
         robot.driveFrontRight.setPower(-0.9);
+        robot.driveFrontLeft.setPower(0.85);
         robot.claw.setPosition(0);
         sleep(800);
-
     }
 }

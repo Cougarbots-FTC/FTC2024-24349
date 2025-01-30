@@ -17,7 +17,7 @@ public class Team24349AutoBlue extends LinearOpMode{
     // initializing a robot hardware map
     MightyMouseHM robot = new MightyMouseHM();
     ElapsedTime Time = new ElapsedTime();
-    double multy = 0.3;
+    double multy = 0.30;
 
     // LinearOp Mode has its own runOpMode
     // so, this allows you to remake your own version of it
