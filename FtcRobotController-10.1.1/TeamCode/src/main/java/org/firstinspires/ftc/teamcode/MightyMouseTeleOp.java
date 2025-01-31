@@ -67,6 +67,32 @@ public class MightyMouseTeleOp extends LinearOpMode {
                 robot.driveFrontLeft.setPower(0);
             }
 
+            //this for the lift system
+            //this on gamepad1
+            //this lifts the left arm up and down
+            double liftArmUp = gamepad1.left_trigger;
+            double liftArmDown = gamepad1.right_trigger;
+            if (liftArmUp>0.1){
+                robot.liftArm.setPower(liftArmUp);
+            } else if (liftArmDown>0.1) {
+                robot.liftArm.setPower(-1*liftArmDown);
+            }
+            else {
+                robot.liftArm.setPower(0);
+            }
+
+            //this rotates the chain
+            if (gamepad1.left_bumper){
+                //clockwise
+                robot.liftSystem.setPower(0.5);
+            } else if (gamepad1.right_bumper) {
+                //counterclockwise
+                robot.liftSystem.setPower(-0.5);
+            }
+            else {
+                robot.liftSystem.setPower(0);
+            }
+
             // this is for lifting the arm
             // by using gamepad 2, this is for when we press start B
             double armRotatorUp = gamepad2.left_trigger;
