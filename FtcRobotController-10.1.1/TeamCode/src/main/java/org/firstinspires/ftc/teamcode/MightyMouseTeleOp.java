@@ -22,7 +22,7 @@ public class MightyMouseTeleOp extends LinearOpMode {
         // telemetry stores positions and other values that are assigned
         telemetry.addData("Say", "Mighty Mouse is here to save the day!");
         telemetry.addData("Arm1 Position: ", robot.armRotator.getCurrentPosition());
-        telemetry.addData("Arm2 Position: ", robot.armRotator2.getCurrentPosition());
+        //telemetry.addData("Arm2 Position: ", robot.armRotator2.getCurrentPosition());
         telemetry.update();
 
         // must have this!!
@@ -72,14 +72,22 @@ public class MightyMouseTeleOp extends LinearOpMode {
             //this lifts the left arm up and down
             double liftArmUp = gamepad1.left_trigger;
             double liftArmDown = gamepad1.right_trigger;
-            if (liftArmUp>0.1){
+            if (liftArmUp >= 0.1) {
                 robot.liftArm.setPower(liftArmUp);
-            } else if (liftArmDown>0.1) {
-                robot.liftArm.setPower(-1*liftArmDown);
             }
-            else {
+            else if (liftArmDown >= 0.1){
+                robot.liftArm.setPower(-1*liftArmDown);
+            }else {
                 robot.liftArm.setPower(0);
             }
+//            if (liftArmUp>0.1){
+//                robot.liftArm.setPower(liftArmUp);
+//            } else if (liftArmDown>0.1) {
+//                robot.liftArm.setPower(-1*liftArmDown);
+//            }
+//            else {
+//                robot.liftArm.setPower(0);
+//            }
 
             //this rotates the chain
             if (gamepad1.left_bumper){
@@ -98,11 +106,11 @@ public class MightyMouseTeleOp extends LinearOpMode {
             double armRotatorUp = gamepad2.left_trigger;
             if (armRotatorUp > 0.1) {
                 pidf.setPower(armRotatorUp); // Set encoder position to 1000
-                robot.armRotator2.setPower(armRotatorUp); // Set encoder position to 1000
+                //robot.armRotator2.setPower(armRotatorUp); // Set encoder position to 1000
             }
             else {
                 pidf.setPower(0); // Set encoder position to 1000
-                robot.armRotator2.setPower(0); // Set encoder position to 1000
+                //robot.armRotator2.setPower(0); // Set encoder position to 1000
             }
             // this is for lowering the arm
             double armRotatorDown = gamepad2.right_trigger;
@@ -110,11 +118,11 @@ public class MightyMouseTeleOp extends LinearOpMode {
             //int val = Math.round(armRotatorDown)*10;
             if (armRotatorDown > 0.1) {
                 pidf.setPower(-1 * armRotatorDown); // Set encoder position to 1000
-                robot.armRotator2.setPower(-1 * armRotatorDown); // Set encoder position to 1000
+                //robot.armRotator2.setPower(-1 * armRotatorDown); // Set encoder position to 1000
             }
             else {
                 pidf.setPower(0); // Set encoder position to 1000
-                robot.armRotator2.setPower(0); // Set encoder position to 1000
+                //robot.armRotator2.setPower(0); // Set encoder position to 1000
             }
 
             //pidf code to set arm to a certain position
