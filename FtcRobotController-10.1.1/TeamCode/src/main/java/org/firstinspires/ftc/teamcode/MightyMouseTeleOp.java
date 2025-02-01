@@ -133,7 +133,7 @@ public class MightyMouseTeleOp extends LinearOpMode {
             //pidf2.loop();
 
             // Telemetry for debugging
-            telemetry.addData("Target1 Position", pidf.getSetpoint());
+            //telemetry.addData("Target1 Position", pidf.getSetpoint());
             //telemetry.addData("Target2 Position", pidf2.getSetpoint());
             telemetry.addData("Current1 Position", robot.armRotator.getCurrentPosition());
             //telemetry.addData("Current2 Position", robot.armRotator2.getCurrentPosition());
