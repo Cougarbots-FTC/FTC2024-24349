@@ -15,7 +15,7 @@ public class MightyMouseTeleOp extends LinearOpMode {
     public void runOpMode() {
         // initializing the hardware map for the robot
         robot.Map(hardwareMap);
-        pidf = new PIDFArm(robot.armRotator,0,0,0,0,3);
+        //pidf = new PIDFArm(robot.armRotator,0,0,0,0,3);
         //pidf2 = new PIDFArm(robot.armRotator2,0,0,0,0,2);
 
 
@@ -70,16 +70,16 @@ public class MightyMouseTeleOp extends LinearOpMode {
             //this for the lift system
             //this on gamepad1
             //this lifts the left arm up and down
-            double liftArmUp = gamepad1.left_trigger;
-            double liftArmDown = gamepad1.right_trigger;
-            if (liftArmUp >= 0.1) {
-                robot.liftArm.setPower(liftArmUp);
-            }
-            else if (liftArmDown >= 0.1){
-                robot.liftArm.setPower(-1*liftArmDown);
-            }else {
-                robot.liftArm.setPower(0);
-            }
+//            double liftArmUp = gamepad1.left_trigger;
+//            double liftArmDown = gamepad1.right_trigger;
+//            if (liftArmUp >= 0.1) {
+//                robot.liftArm.setPower(liftArmUp);
+//            }
+//            else if (liftArmDown >= 0.1){
+//                robot.liftArm.setPower(-1*liftArmDown);
+//            }else {
+//                robot.liftArm.setPower(0);
+//            }
 //            if (liftArmUp>0.1){
 //                robot.liftArm.setPower(liftArmUp);
 //            } else if (liftArmDown>0.1) {
@@ -90,54 +90,48 @@ public class MightyMouseTeleOp extends LinearOpMode {
 //            }
 
             //this rotates the chain
-            if (gamepad1.left_bumper){
-                //clockwise
-                robot.liftSystem.setPower(0.5);
-            } else if (gamepad1.right_bumper) {
-                //counterclockwise
-                robot.liftSystem.setPower(-0.5);
-            }
-            else {
-                robot.liftSystem.setPower(0);
-            }
+//            if (gamepad1.left_bumper){
+//                //clockwise
+//                robot.liftSystem.setPower(0.5);
+//            } else if (gamepad1.right_bumper) {
+//                //counterclockwise
+//                robot.liftSystem.setPower(-0.5);
+//            }
+//            else {
+//                robot.liftSystem.setPower(0);
+//            }
 
             // this is for lifting the arm
             // by using gamepad 2, this is for when we press start B
             double armRotatorUp = gamepad2.left_trigger;
-            if (armRotatorUp > 0.1) {
-                pidf.setPower(armRotatorUp); // Set encoder position to 1000
-                //robot.armRotator2.setPower(armRotatorUp); // Set encoder position to 1000
-            }
-            else {
-                pidf.setPower(0); // Set encoder position to 1000
-                //robot.armRotator2.setPower(0); // Set encoder position to 1000
-            }
-            // this is for lowering the arm
             double armRotatorDown = gamepad2.right_trigger;
-
-            //int val = Math.round(armRotatorDown)*10;
-            if (armRotatorDown > 0.1) {
-                pidf.setPower(-1 * armRotatorDown); // Set encoder position to 1000
-                //robot.armRotator2.setPower(-1 * armRotatorDown); // Set encoder position to 1000
+            if (armRotatorUp > 0.1) {
+                robot.armRotator.setPower(armRotatorUp); // Set encoder position to 1000
+                robot.armRotator2.setPower(armRotatorUp); // Set encoder position to 1000
+            }
+            else if (armRotatorDown > 0.1) {
+                robot.armRotator.setPower(-1 * armRotatorDown); // Set encoder position to 1000
+                robot.armRotator2.setPower(-1 * armRotatorDown); // Set encoder position to 1000
             }
             else {
-                pidf.setPower(0); // Set encoder position to 1000
-                //robot.armRotator2.setPower(0); // Set encoder position to 1000
+                robot.armRotator.setPower(0); // Set encoder position to 1000
+                robot.armRotator2.setPower(0); // Set encoder position to 1000
             }
+
 
             //pidf code to set arm to a certain position
             // when x is pressed the arm moves to score high specimen
             // when y is pressed the arm moves to grab a specimen from the wall
-            if (gamepad2.x) {
-                pidf.setSetpoint(290); // Set encoder position to 1000
-                //pidf2.setSetpoint(289); // Set encoder position to 2000
-
-            } else if (gamepad2.y) {
-                pidf.setSetpoint(140); // Set encoder position to 2000
-                //pidf2.setSetpoint(139); // Set encoder position to 2000
-
-            }
-            pidf.loop();
+//            if (gamepad2.x) {
+//                pidf.setSetpoint(290); // Set encoder position to 1000
+//                //pidf2.setSetpoint(289); // Set encoder position to 2000
+//
+//            } else if (gamepad2.y) {
+//                pidf.setSetpoint(140); // Set encoder position to 2000
+//                //pidf2.setSetpoint(139); // Set encoder position to 2000
+//
+//            }
+            //pidf.loop();
             //pidf2.loop();
 
             // Telemetry for debugging
