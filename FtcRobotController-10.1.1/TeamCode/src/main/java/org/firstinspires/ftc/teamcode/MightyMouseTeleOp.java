@@ -8,8 +8,6 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 @TeleOp(name = "MightyMouse", group = "24349")
 public class MightyMouseTeleOp extends LinearOpMode {
     MightyMouseHM robot = new MightyMouseHM();
-    private PIDFArm pidf;
-    //private PIDFArm pidf2;
 
     @Override
     public void runOpMode() {

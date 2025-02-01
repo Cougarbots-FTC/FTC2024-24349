@@ -14,8 +14,6 @@ public class MightyMouseHM {
 
     public DcMotor armRotator = null;
     public DcMotor armRotator2 = null;
-    //public DcMotor liftArm = null;
-    //public DcMotor liftSystem = null;
     public Servo claw = null;
     public CRServo wrist = null;
     //public CRServo liftArm = null;
