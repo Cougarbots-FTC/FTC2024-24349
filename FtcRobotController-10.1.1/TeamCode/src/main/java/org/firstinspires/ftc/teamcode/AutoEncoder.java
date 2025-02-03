@@ -20,11 +20,12 @@ public class AutoEncoder extends LinearOpMode {
     // For gearing UP, use a gear ratio less than 1.0. Note this will affect the direction of wheel rotation.
     ///For drive train motors
     static final double     COUNTS_PER_MOTOR_REV    = 28 ;    // gear ratio * tick per = 20 * 28 = 560
-    static final double     DRIVE_GEAR_REDUCTION    = 12 ;     //  External Gearing.
-    static final double     WHEEL_DIAMETER_INCHES   = 3.0 ;     // For figuring circumference
+    static final double     DRIVE_GEAR_REDUCTION    = 12*(2.0/3) ;     //  External Gearing
+    // Big / Small =  90 / 60
+    static final double     WHEEL_DIAMETER_INCHES   = 3.5 ;     // For figuring circumference
     static final double     COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
             (WHEEL_DIAMETER_INCHES * 3.1415);
-    static final double     DRIVE_SPEED             = 1;
+    static final double     DRIVE_SPEED             = 0.6;
     static final double     TURN_SPEED              = 0.5;
 
     static final double LIFT_GEAR_RATIO = 13.7;
@@ -43,7 +44,7 @@ public class AutoEncoder extends LinearOpMode {
         robot.driveFrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         waitForStart();
 
-        encoderDrive(0.8, 2, 2, 3);
+        encoderDrive(DRIVE_SPEED, 0.5, -0.5, 1);
     }
 
     /**
