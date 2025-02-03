@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Autonomous(name = "AutoEncoder", group = "24349")
 public class AutoEncoder extends LinearOpMode {
-    MightyMouse robot = new MightyMouseHM();
+    MightyMouseHM robot = new MightyMouseHM();
     ElapsedTime Time = new ElapsedTime();
 
 
@@ -33,8 +33,17 @@ public class AutoEncoder extends LinearOpMode {
     @Override
     public void runOpMode() {
         robot.Map(hardwareMap);
+        telemetry.addData("Time", Time.time());
+        telemetry.addData("Starting at",  "%7d :%7d",
+                robot.driveFrontLeft.getCurrentPosition(),
+                robot.driveFrontRight.getCurrentPosition());
+        telemetry.update();
+
+        robot.driveFrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.driveFrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         waitForStart();
 
+        encoderDrive(0.8, 2, 2, 3);
     }
 
     /**
@@ -55,24 +64,18 @@ public class AutoEncoder extends LinearOpMode {
         if (opModeIsActive()) {
 
             // Determine new target position, and pass to motor controller
-            newLeftTarget = robot.driveLeftFront.getCurrentPosition() + (int) (leftInches * COUNTS_PER_INCH);
-            newRightTarget = robot.driveRightFront.getCurrentPosition() + (int) (rightInches * COUNTS_PER_INCH);
-            robot.driveLeftFront.setTargetPosition(newLeftTarget);
-            robot.driveRightFront.setTargetPosition(newRightTarget);
-            robot.driveLeftBack.setTargetPosition(newLeftTarget-11);
-            robot.driveRightBack.setTargetPosition(newRightTarget-11);
+            newLeftTarget = robot.driveFrontLeft.getCurrentPosition() + (int) (leftInches * COUNTS_PER_INCH);
+            newRightTarget = robot.driveFrontRight.getCurrentPosition() + (int) (rightInches * COUNTS_PER_INCH);
+            robot.driveFrontLeft.setTargetPosition(newLeftTarget);
+            robot.driveFrontRight.setTargetPosition(newRightTarget);
 
-            robot.driveLeftFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            robot.driveRightFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            robot.driveLeftBack.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            robot.driveRightBack.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            robot.driveFrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            robot.driveFrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
             // reset the timeout time and start motion.
-            runtime.reset();
-            robot.driveLeftFront.setPower(Math.abs(speed));
-            robot.driveRightFront.setPower(Math.abs(speed));
-            robot.driveLeftBack.setPower(Math.abs(speed));
-            robot.driveRightBack.setPower(Math.abs(speed));
+            Time.reset();
+            robot.driveFrontLeft.setPower(Math.abs(speed));
+            robot.driveFrontRight.setPower(Math.abs(speed));
 
             // keep looping while we are still active, and there is time left, and both motors are running.
             // Note: We use (isBusy() && isBusy()) in the loop test, which means that when EITHER motor hits
@@ -81,27 +84,23 @@ public class AutoEncoder extends LinearOpMode {
             // However, if you require that BOTH motors have finished their moves before the robot continues
             // onto the next step, use (isBusy() || isBusy()) in the loop test.
             while (opModeIsActive() &&
-                    (runtime.seconds() < timeoutS) &&
-                    (robot.driveLeftFront.isBusy() && robot.driveRightFront.isBusy())) {
+                    (Time.seconds() < timeoutS) &&
+                    (robot.driveFrontLeft.isBusy() && robot.driveFrontRight.isBusy())) {
 
                 // Display it for the driver.
                 telemetry.addData("Running to", " %7d :%7d", newLeftTarget, newRightTarget);
                 telemetry.addData("Currently at", " at %7d :%7d",
-                        robot.driveLeftFront.getCurrentPosition(), robot.driveRightFront.getCurrentPosition());
+                        robot.driveFrontLeft.getCurrentPosition(), robot.driveFrontRight.getCurrentPosition());
                 telemetry.update();
             }
 
             // Stop all motion;
-            robot.driveLeftFront.setPower(0);
-            robot.driveRightFront.setPower(0);
-            robot.driveLeftBack.setPower(0);
-            robot.driveRightBack.setPower(0);
+            robot.driveFrontLeft.setPower(0);
+            robot.driveFrontRight.setPower(0);
 
             // Turn off RUN_TO_POSITION
-            robot.driveLeftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            robot.driveRightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            robot.driveLeftBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            robot.driveRightBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            robot.driveFrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            robot.driveFrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
             sleep(250);   // optional pause after each move.
         }
