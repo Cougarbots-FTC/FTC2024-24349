@@ -25,7 +25,7 @@ public class AutoEncoder extends LinearOpMode {
     static final double     WHEEL_DIAMETER_INCHES   = 4 ;     // For figuring circumference
     static final double     COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
             (WHEEL_DIAMETER_INCHES * 3.1415);
-    static final double     DRIVE_SPEED             = 0.6;
+    static final double     DRIVE_SPEED             = 0.75;
     static final double     TURN_SPEED              = 0.5;
 
     //static final double LIFT_GEAR_RATIO = 13.7;
@@ -49,8 +49,9 @@ public class AutoEncoder extends LinearOpMode {
         waitForStart();
         // Step through each leg of the path.
         // Note: Reverse movement is obtained by setting a negative distance (not speed).
-        // S1: Forward 48 inches with 5 second timeout.
-        encoderDrive(DRIVE_SPEED, 48, -48, 1);
+        // S1: Moves backward 30 inches with a 1 second timeout.
+        // Ours moves half of what it is told (but hey! if it works, it works)
+        encoderDrive(DRIVE_SPEED, -80, 80, 1);
         // S2: Turn right 12 inches with 4 second timeout.
         // S3: Reverse 24 inches with 4 second timeout.
         telemetry.addData("Path", "Complete");
