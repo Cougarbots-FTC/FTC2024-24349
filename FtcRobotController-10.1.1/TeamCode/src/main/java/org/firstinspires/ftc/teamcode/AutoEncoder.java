@@ -19,9 +19,9 @@ public class AutoEncoder extends LinearOpMode {
     // This is gearing DOWN for less speed and more torque.
     // For gearing UP, use a gear ratio less than 1.0. Note this will affect the direction of wheel rotation.
     ///For drive train motors
-    static final double     COUNTS_PER_MOTOR_REV    = 28 ;    // gear ratio * tick per = 20 * 28 = 560
-    static final double     DRIVE_GEAR_REDUCTION    = 12*(2.0/3) ;     //  External Gearing
-    // Big / Small =  90 / 60
+    static final double     COUNTS_PER_MOTOR_REV    = 28 ;    // gear ratio * tick per
+    static final double     DRIVE_GEAR_REDUCTION    = 4.8;     //  External Gearing
+    // load / motor ? big over small? or small over big?
     static final double     WHEEL_DIAMETER_INCHES   = 3.5 ;     // For figuring circumference
     static final double     COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
             (WHEEL_DIAMETER_INCHES * 3.1415);
@@ -42,9 +42,12 @@ public class AutoEncoder extends LinearOpMode {
 
         robot.driveFrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.driveFrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.driveFrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.driveFrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         waitForStart();
 
-        encoderDrive(DRIVE_SPEED, 0.5, -0.5, 1);
+        encoderDrive(DRIVE_SPEED, -1.0, 1.0, 10000);
+        sleep(10000);
     }
 
     /**
@@ -69,6 +72,11 @@ public class AutoEncoder extends LinearOpMode {
             newRightTarget = robot.driveFrontRight.getCurrentPosition() + (int) (rightInches * COUNTS_PER_INCH);
             robot.driveFrontLeft.setTargetPosition(newLeftTarget);
             robot.driveFrontRight.setTargetPosition(newRightTarget);
+
+            telemetry.addData("Target Pos Left:",newLeftTarget);
+            telemetry.addData("Target Pos Right:",newRightTarget);
+            telemetry.update();
+
 
             robot.driveFrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             robot.driveFrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
