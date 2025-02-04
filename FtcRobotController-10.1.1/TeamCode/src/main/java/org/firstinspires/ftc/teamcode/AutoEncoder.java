@@ -39,6 +39,7 @@ public class AutoEncoder extends LinearOpMode {
                 robot.driveFrontLeft.getCurrentPosition(),
                 robot.driveFrontRight.getCurrentPosition());
         telemetry.update();
+        sleep(1000);
 
         robot.driveFrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.driveFrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -66,6 +67,12 @@ public class AutoEncoder extends LinearOpMode {
 
         // Ensure that the OpMode is still active
         if (opModeIsActive()) {
+            telemetry.addData("Starting Left Encoder", robot.driveFrontLeft.getCurrentPosition());
+            telemetry.addData("Starting Right Encoder", robot.driveFrontRight.getCurrentPosition());
+            telemetry.addData("COUNTS_PER_INCH", COUNTS_PER_INCH); // if robot moves wrong, gear reduction or wheel diameter = incorrect
+            // adjust counts per inch by tweaking gear reduction
+            telemetry.update();
+            sleep(1000);
 
             // Determine new target position, and pass to motor controller
             newLeftTarget = robot.driveFrontLeft.getCurrentPosition() + (int) (leftInches * COUNTS_PER_INCH);
@@ -75,7 +82,9 @@ public class AutoEncoder extends LinearOpMode {
 
             telemetry.addData("Target Pos Left:",newLeftTarget);
             telemetry.addData("Target Pos Right:",newRightTarget);
+
             telemetry.update();
+            sleep(1000);
 
 
             robot.driveFrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -86,6 +95,11 @@ public class AutoEncoder extends LinearOpMode {
             robot.driveFrontLeft.setPower(Math.abs(speed));
             robot.driveFrontRight.setPower(Math.abs(speed));
 
+            telemetry.addData("Motors Busy?", robot.driveFrontLeft.isBusy() + " | " + robot.driveFrontRight.isBusy());
+            // if both motors say false, then the target position is not correctly set
+            telemetry.update();
+            sleep(1000);
+
             // keep looping while we are still active, and there is time left, and both motors are running.
             // Note: We use (isBusy() && isBusy()) in the loop test, which means that when EITHER motor hits
             // its target position, the motion will stop.  This is "safer" in the event that the robot will
@@ -94,7 +108,7 @@ public class AutoEncoder extends LinearOpMode {
             // onto the next step, use (isBusy() || isBusy()) in the loop test.
             while (opModeIsActive() &&
                     (Time.seconds() < timeoutS) &&
-                    (robot.driveFrontLeft.isBusy() && robot.driveFrontRight.isBusy())) {
+                    (robot.driveFrontLeft.isBusy() || robot.driveFrontRight.isBusy())) {
 
                 // Display it for the driver.
                 telemetry.addData("Running to", " %7d :%7d", newLeftTarget, newRightTarget);
