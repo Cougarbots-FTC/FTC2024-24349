@@ -137,4 +137,6 @@ public class AutoEncoder extends LinearOpMode {
             sleep(250);   // optional pause after each move.
         }
     }
+
+    public void encoder
 }

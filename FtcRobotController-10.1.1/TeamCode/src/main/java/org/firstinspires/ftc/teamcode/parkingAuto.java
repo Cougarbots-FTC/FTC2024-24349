@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Autonomous (name="parkingAuto", group="24349")
-public class parkingAuto extends LinearOpMode{
+public class parkingAuto extends AutoEncoder{
 
     MightyMouseHM robot = new MightyMouseHM();
     ElapsedTime Time = new ElapsedTime();
@@ -13,13 +13,9 @@ public class parkingAuto extends LinearOpMode{
 
     @Override
     public void runOpMode() {
-        robot.Map(hardwareMap);
-        waitForStart();
+        // moves forward
+        //encoderDrive(DRIVE_SPEED, 80, -80, 1);
 
-        //moves forward into the net zone
-        robot.driveFrontRight.setPower(-0.9);
-        robot.driveFrontLeft.setPower(0.85);
-        robot.claw.setPosition(0);
-        sleep(800);
     }
 }
+
