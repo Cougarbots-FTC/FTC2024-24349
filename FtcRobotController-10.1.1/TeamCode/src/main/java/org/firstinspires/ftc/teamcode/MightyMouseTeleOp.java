@@ -144,7 +144,7 @@ public class MightyMouseTeleOp extends LinearOpMode {
                 robot.claw.setPosition(1);//open
             }
             if (gamepad2.b) {
-                robot.claw.setPosition(0); //close
+                robot.claw.setPosition(0.5); //close
             }
 
             // moves the wrist up and down
