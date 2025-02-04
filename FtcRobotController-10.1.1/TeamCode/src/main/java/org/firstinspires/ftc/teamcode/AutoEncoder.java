@@ -19,17 +19,17 @@ public class AutoEncoder extends LinearOpMode {
     // This is gearing DOWN for less speed and more torque.
     // For gearing UP, use a gear ratio less than 1.0. Note this will affect the direction of wheel rotation.
     ///For drive train motors
-    static final double     COUNTS_PER_MOTOR_REV    = 28 ;    // gear ratio * tick per
-    static final double     DRIVE_GEAR_REDUCTION    = 4.8;     //  External Gearing
+    static final double     COUNTS_PER_MOTOR_REV    = 336 ;    // gear ratio * tick per
+    static final double     DRIVE_GEAR_REDUCTION    = 1;     //  External Gearing
     // load / motor ? big over small? or small over big?
-    static final double     WHEEL_DIAMETER_INCHES   = 3.5 ;     // For figuring circumference
+    static final double     WHEEL_DIAMETER_INCHES   = 4 ;     // For figuring circumference
     static final double     COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
             (WHEEL_DIAMETER_INCHES * 3.1415);
     static final double     DRIVE_SPEED             = 0.6;
     static final double     TURN_SPEED              = 0.5;
 
-    static final double LIFT_GEAR_RATIO = 13.7;
-    static final double LIFT_COUNTS_PER_INCH = (28 * LIFT_GEAR_RATIO) / (Math.PI * Math.pow(1.5,2)) ; //* 28;
+    //static final double LIFT_GEAR_RATIO = 13.7;
+    //static final double LIFT_COUNTS_PER_INCH = (28 * LIFT_GEAR_RATIO) / (Math.PI * Math.pow(1.5,2)) ; //* 28;
 
     @Override
     public void runOpMode() {
@@ -45,10 +45,18 @@ public class AutoEncoder extends LinearOpMode {
         robot.driveFrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.driveFrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.driveFrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        waitForStart();
 
-        encoderDrive(DRIVE_SPEED, -1.0, 1.0, 10000);
-        sleep(10000);
+        waitForStart();
+        // Step through each leg of the path.
+        // Note: Reverse movement is obtained by setting a negative distance (not speed).
+        // S1: Forward 48 inches with 5 second timeout.
+        encoderDrive(DRIVE_SPEED, 48, -48, 1);
+        // S2: Turn right 12 inches with 4 second timeout.
+        // S3: Reverse 24 inches with 4 second timeout.
+        telemetry.addData("Path", "Complete");
+        telemetry.update();
+        // Pause to display final telemetry message.
+        sleep(1000);
     }
 
     /**
@@ -62,23 +70,23 @@ public class AutoEncoder extends LinearOpMode {
     public void encoderDrive(double speed,
                              double leftInches, double rightInches,
                              double timeoutS) {
-        int newLeftTarget;
-        int newRightTarget;
+        double newLeftTarget;
+        double newRightTarget;
 
         // Ensure that the OpMode is still active
         if (opModeIsActive()) {
-            telemetry.addData("Starting Left Encoder", robot.driveFrontLeft.getCurrentPosition());
-            telemetry.addData("Starting Right Encoder", robot.driveFrontRight.getCurrentPosition());
-            telemetry.addData("COUNTS_PER_INCH", COUNTS_PER_INCH); // if robot moves wrong, gear reduction or wheel diameter = incorrect
+            //telemetry.addData("Starting Left Encoder", robot.driveFrontLeft.getCurrentPosition());
+            //telemetry.addData("Starting Right Encoder", robot.driveFrontRight.getCurrentPosition());
+            //telemetry.addData("COUNTS_PER_INCH", COUNTS_PER_INCH); // if robot moves wrong, gear reduction or wheel diameter = incorrect
             // adjust counts per inch by tweaking gear reduction
-            telemetry.update();
-            sleep(1000);
+            //telemetry.update();
+            //sleep(1000);
 
             // Determine new target position, and pass to motor controller
-            newLeftTarget = robot.driveFrontLeft.getCurrentPosition() + (int) (leftInches * COUNTS_PER_INCH);
-            newRightTarget = robot.driveFrontRight.getCurrentPosition() + (int) (rightInches * COUNTS_PER_INCH);
-            robot.driveFrontLeft.setTargetPosition(newLeftTarget);
-            robot.driveFrontRight.setTargetPosition(newRightTarget);
+            newLeftTarget = robot.driveFrontLeft.getCurrentPosition() + Math.floor(leftInches * COUNTS_PER_INCH);
+            newRightTarget = robot.driveFrontRight.getCurrentPosition() + Math.floor(rightInches * COUNTS_PER_INCH);
+            robot.driveFrontLeft.setTargetPosition((int) newLeftTarget);
+            robot.driveFrontRight.setTargetPosition((int) newRightTarget);
 
             telemetry.addData("Target Pos Left:",newLeftTarget);
             telemetry.addData("Target Pos Right:",newRightTarget);
@@ -95,10 +103,10 @@ public class AutoEncoder extends LinearOpMode {
             robot.driveFrontLeft.setPower(Math.abs(speed));
             robot.driveFrontRight.setPower(Math.abs(speed));
 
-            telemetry.addData("Motors Busy?", robot.driveFrontLeft.isBusy() + " | " + robot.driveFrontRight.isBusy());
+            //telemetry.addData("Motors Busy?", robot.driveFrontLeft.isBusy() + " | " + robot.driveFrontRight.isBusy());
             // if both motors say false, then the target position is not correctly set
-            telemetry.update();
-            sleep(1000);
+            //telemetry.update();
+            //sleep(1000);
 
             // keep looping while we are still active, and there is time left, and both motors are running.
             // Note: We use (isBusy() && isBusy()) in the loop test, which means that when EITHER motor hits
@@ -108,13 +116,13 @@ public class AutoEncoder extends LinearOpMode {
             // onto the next step, use (isBusy() || isBusy()) in the loop test.
             while (opModeIsActive() &&
                     (Time.seconds() < timeoutS) &&
-                    (robot.driveFrontLeft.isBusy() || robot.driveFrontRight.isBusy())) {
+                    (robot.driveFrontLeft.isBusy() && robot.driveFrontRight.isBusy())) {
 
                 // Display it for the driver.
-                telemetry.addData("Running to", " %7d :%7d", newLeftTarget, newRightTarget);
-                telemetry.addData("Currently at", " at %7d :%7d",
-                        robot.driveFrontLeft.getCurrentPosition(), robot.driveFrontRight.getCurrentPosition());
-                telemetry.update();
+                //telemetry.addData("Running to", " %7d :%7d", newLeftTarget, newRightTarget);
+                //telemetry.addData("Currently at", " at %7d :%7d",
+                        //robot.driveFrontLeft.getCurrentPosition(), robot.driveFrontRight.getCurrentPosition());
+                //telemetry.update();
             }
 
             // Stop all motion;
