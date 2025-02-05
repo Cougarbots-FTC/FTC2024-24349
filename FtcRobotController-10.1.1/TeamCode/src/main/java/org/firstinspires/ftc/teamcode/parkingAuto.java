@@ -10,11 +10,12 @@ public class parkingAuto extends AutoEncoder{
     MightyMouseHM robot = new MightyMouseHM();
     ElapsedTime Time = new ElapsedTime();
     double multy = 0.30;
+    AutoEncoder encode = new AutoEncoder();
 
     @Override
     public void runOpMode() {
         // moves forward
-        //encoderDrive(DRIVE_SPEED, 80, -80, 1);
+        encoderDrive(DRIVE_SPEED, 80, -80, 1);
 
     }
 }

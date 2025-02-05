@@ -19,14 +19,14 @@ public class AutoEncoder extends LinearOpMode {
     // This is gearing DOWN for less speed and more torque.
     // For gearing UP, use a gear ratio less than 1.0. Note this will affect the direction of wheel rotation.
     ///For drive train motors
-    static final double     COUNTS_PER_MOTOR_REV    = 336 ;    // gear ratio * tick per
-    static final double     DRIVE_GEAR_REDUCTION    = 1;     //  External Gearing
+    static  double     COUNTS_PER_MOTOR_REV    = 336 ;    // gear ratio * tick per
+    static  double     DRIVE_GEAR_REDUCTION    = 1;     //  External Gearing
     // load / motor ? big over small? or small over big?
-    static final double     WHEEL_DIAMETER_INCHES   = 4 ;     // For figuring circumference
-    static final double     COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
+    static  double     WHEEL_DIAMETER_INCHES   = 4 ;     // For figuring circumference
+    static  double     COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
             (WHEEL_DIAMETER_INCHES * 3.1415);
-    static final double     DRIVE_SPEED             = 0.75;
-    static final double     TURN_SPEED              = 0.5;
+    static  double     DRIVE_SPEED             = 0.75;
+    static  double     TURN_SPEED              = 0.5;
 
     //static final double LIFT_GEAR_RATIO = 13.7;
     //static final double LIFT_COUNTS_PER_INCH = (28 * LIFT_GEAR_RATIO) / (Math.PI * Math.pow(1.5,2)) ; //* 28;
