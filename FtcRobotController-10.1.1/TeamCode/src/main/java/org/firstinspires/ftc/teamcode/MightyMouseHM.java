@@ -30,8 +30,8 @@ public class MightyMouseHM {
         // the comments next to each line shows the port each wire is connected to
         driveFrontRight = hwMap.get(DcMotor.class, "driveFrontRight"); // 0 c
         driveFrontLeft = hwMap.get(DcMotor.class, "driveFrontLeft");   // 1 c
-        armRotator = hwMap.get(DcMotor.class, "armRotator");   // 2 c
-        armRotator2 = hwMap.get(DcMotor.class, "armRotator2");   // 3 c
+        armRotator = hwMap.get(DcMotor.class, "lift1");   // 2 c
+        armRotator2 = hwMap.get(DcMotor.class, "lift2");   // 3 c
         driveBackLeft = hwMap.get(DcMotor.class, "driveBackLeft");   // 0 e
         driveBackRight = hwMap.get(DcMotor.class, "driveBackRight");   // 1 e
 
