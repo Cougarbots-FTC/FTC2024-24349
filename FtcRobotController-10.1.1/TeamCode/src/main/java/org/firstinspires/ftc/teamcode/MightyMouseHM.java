@@ -14,8 +14,8 @@ public class MightyMouseHM {
 
     public DcMotor armRotator = null;
     public DcMotor armRotator2 = null;
-    public DcMotor lift1 = null;
-    public DcMotor lift2 = null;
+    public DcMotor driveBackLeft = null;
+    public DcMotor driveBackRight = null;
     public Servo claw = null;
     public CRServo wrist = null;
     //public CRServo liftArm = null;
@@ -28,20 +28,16 @@ public class MightyMouseHM {
         // configuration to the ports on the driver hub (each motor)
         // the '.get(DcMotor.class' is how you always initialize it
         // the comments next to each line shows the port each wire is connected to
-        driveFrontRight = hwMap.get(DcMotor.class, "driveFrontRight"); // 0
-        driveFrontLeft = hwMap.get(DcMotor.class, "driveFrontLeft");   // 1
-        armRotator = hwMap.get(DcMotor.class, "armRotator");   // 2
-        armRotator2 = hwMap.get(DcMotor.class, "armRotator2");   // 3
-        lift1 = hwMap.get(DcMotor.class, "lift1");   // 0
-        lift2 = hwMap.get(DcMotor.class, "lift2");   // 1
-       // liftArm = hwMap.get(DcMotor.class, "liftArm");   // 0 e
-        //liftSystem = hwMap.get(DcMotor.class, "liftSystem");   // 1 e
+        driveFrontRight = hwMap.get(DcMotor.class, "driveFrontRight"); // 0 c
+        driveFrontLeft = hwMap.get(DcMotor.class, "driveFrontLeft");   // 1 c
+        armRotator = hwMap.get(DcMotor.class, "armRotator");   // 2 c
+        armRotator2 = hwMap.get(DcMotor.class, "armRotator2");   // 3 c
+        driveBackLeft = hwMap.get(DcMotor.class, "driveBackLeft");   // 0 e
+        driveBackRight = hwMap.get(DcMotor.class, "driveBackRight");   // 1 e
 
         // configuration of the servos
         claw = hwMap.get(Servo.class, "claw"); // 4
         wrist = hwMap.get(CRServo.class, "wrist"); // 5
-        //liftArm = hwMap.get(CRServo.class, "liftArm"); // 4
-        //liftArm2 = hwMap.get(CRServo.class, "liftArm2"); // 4
 
 
 
@@ -68,22 +64,13 @@ public class MightyMouseHM {
         armRotator2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         armRotator2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        lift1.setDirection(DcMotor.Direction.FORWARD);
-        lift1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        lift1.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        driveBackLeft.setDirection(DcMotor.Direction.FORWARD);
+        driveBackLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        driveBackLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        lift2.setDirection(DcMotor.Direction.FORWARD);
-        lift2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        lift2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-//
-//        liftArm.setDirection(DcMotor.Direction.FORWARD);
-//        liftArm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-//        liftArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-
-//        liftSystem.setDirection(DcMotor.Direction.FORWARD);
-//        liftSystem.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-//        liftSystem.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-
+        driveBackRight.setDirection(DcMotor.Direction.FORWARD);
+        driveBackRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        driveBackRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 
 }

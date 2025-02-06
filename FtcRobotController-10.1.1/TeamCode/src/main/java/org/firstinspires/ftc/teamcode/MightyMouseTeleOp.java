@@ -34,51 +34,7 @@ public class MightyMouseTeleOp extends LinearOpMode {
             boolean speedslow = gamepad1.right_bumper;
             double mag = speedslow ? 0.5 : 1.0;
 
-            // this is the one we use to move front and back
-            double yPower = gamepad1.left_stick_y;
-
-            if (yPower != 0) {
-                // makes it move forward if up and backward if down
-                robot.driveFrontLeft.setPower(-yPower * mag);
-                robot.driveFrontRight.setPower(yPower * mag);
-            } else {
-                // makes sure that the robot is not moving when the left joystick is not moved
-                robot.driveFrontLeft.setPower(0);
-                robot.driveFrontRight.setPower(0);
-            }
-            // this is for turning
-            double xPower = gamepad1.right_stick_x;
-            if (xPower < 0 ) {
-                robot.driveFrontLeft.setPower(-xPower * mag);
-                robot.driveFrontRight.setPower(xPower * mag);
-            } else {
-                // makes sure that the robot is not moving when the right joystick is not moved
-                robot.driveFrontLeft.setPower(0);
-                robot.driveFrontRight.setPower(0);
-            }
-            if (xPower > 0) {
-                robot.driveFrontRight.setPower(-xPower * mag);
-                robot.driveFrontLeft.setPower(xPower * mag);
-            } else {
-                // makes sure that the robot is not moving when the right joystick is not moved
-                robot.driveFrontRight.setPower(0);
-                robot.driveFrontLeft.setPower(0);
-            }
-
-            double liftUp = gamepad1.left_trigger;
-            double liftDown = gamepad1.right_trigger;
-            if (liftUp > 0.1) {
-                robot.lift1.setPower(liftUp); // Set encoder position to 1000
-                robot.lift2.setPower(liftUp); // Set encoder position to 1000
-            }
-            else if (liftDown > 0.1) {
-                robot.lift1.setPower(-1 * liftDown); // Set encoder position to 1000
-                robot.lift2.setPower(-1 * liftDown); // Set encoder position to 1000
-            }
-            else {
-                robot.lift1.setPower(0); // Set encoder position to 1000
-                robot.lift2.setPower(0); // Set encoder position to 1000
-            }
+            driveTrain(mag);
 
             //this for the lift system
             //this on gamepad1
@@ -171,5 +127,28 @@ public class MightyMouseTeleOp extends LinearOpMode {
             }
 
         }
+
+    }
+    public void driveTrain(double slow) {
+        //Instances variables assigned to double or decimal values to the different gamepad
+        //Set the vertical as a negative because of the different values needed for the right side as they are in reverse
+        double vertical = gamepad1.left_stick_y;
+        double horizontal = gamepad1.left_stick_x * 1.1; //  Multiply by 1.1 to negate imperfect strafing
+        double pivot = gamepad1.right_stick_x;
+
+        //Obtains values for each motor through the positions through values
+        //from  left joystick which has up/down(vertical) and left/right values(horizontal), and right joystick which has left/right values(pivot)
+        double denominator = Math.max(Math.abs(vertical) + Math.abs(horizontal) + Math.abs(pivot), 1);
+        double rightFrontPower = (vertical + horizontal + pivot) / denominator;
+        double rightBackPower = (vertical - horizontal + pivot) / denominator;
+        double LeftFrontPower = (vertical - horizontal - pivot) / denominator;
+        double LeftBackPower = (vertical + horizontal - pivot) / denominator;
+
+        //Sets Power to the motors and changed the signed of the math in order to proportion the wheels right to move
+        robot.driveFrontRight.setPower(rightFrontPower * slow);
+        robot.driveBackRight.setPower(rightBackPower * slow);
+        robot.driveBackLeft.setPower(LeftBackPower * slow);
+        robot.driveFrontLeft.setPower(LeftFrontPower * slow);
+
     }
 }
