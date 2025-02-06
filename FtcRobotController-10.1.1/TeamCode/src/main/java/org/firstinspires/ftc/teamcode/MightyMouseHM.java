@@ -14,6 +14,8 @@ public class MightyMouseHM {
 
     public DcMotor armRotator = null;
     public DcMotor armRotator2 = null;
+    public DcMotor lift1 = null;
+    public DcMotor lift2 = null;
     public Servo claw = null;
     public CRServo wrist = null;
     //public CRServo liftArm = null;
@@ -30,6 +32,8 @@ public class MightyMouseHM {
         driveFrontLeft = hwMap.get(DcMotor.class, "driveFrontLeft");   // 1
         armRotator = hwMap.get(DcMotor.class, "armRotator");   // 2
         armRotator2 = hwMap.get(DcMotor.class, "armRotator2");   // 3
+        lift1 = hwMap.get(DcMotor.class, "lift1");   // 0
+        lift2 = hwMap.get(DcMotor.class, "lift2");   // 1
        // liftArm = hwMap.get(DcMotor.class, "liftArm");   // 0 e
         //liftSystem = hwMap.get(DcMotor.class, "liftSystem");   // 1 e
 
@@ -56,13 +60,21 @@ public class MightyMouseHM {
         driveFrontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         driveFrontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        armRotator.setDirection(DcMotor.Direction.FORWARD);
+        armRotator.setDirection(DcMotor.Direction.REVERSE);
         armRotator.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         armRotator.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         armRotator2.setDirection(DcMotor.Direction.FORWARD);
         armRotator2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         armRotator2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        lift1.setDirection(DcMotor.Direction.FORWARD);
+        lift1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        lift1.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        lift2.setDirection(DcMotor.Direction.FORWARD);
+        lift2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        lift2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 //
 //        liftArm.setDirection(DcMotor.Direction.FORWARD);
 //        liftArm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);

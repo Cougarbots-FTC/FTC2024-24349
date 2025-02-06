@@ -65,6 +65,21 @@ public class MightyMouseTeleOp extends LinearOpMode {
                 robot.driveFrontLeft.setPower(0);
             }
 
+            double liftUp = gamepad1.left_trigger;
+            double liftDown = gamepad1.right_trigger;
+            if (liftUp > 0.1) {
+                robot.lift1.setPower(liftUp); // Set encoder position to 1000
+                robot.lift2.setPower(liftUp); // Set encoder position to 1000
+            }
+            else if (liftDown > 0.1) {
+                robot.lift1.setPower(-1 * liftDown); // Set encoder position to 1000
+                robot.lift2.setPower(-1 * liftDown); // Set encoder position to 1000
+            }
+            else {
+                robot.lift1.setPower(0); // Set encoder position to 1000
+                robot.lift2.setPower(0); // Set encoder position to 1000
+            }
+
             //this for the lift system
             //this on gamepad1
             //this lifts the left arm up and down
