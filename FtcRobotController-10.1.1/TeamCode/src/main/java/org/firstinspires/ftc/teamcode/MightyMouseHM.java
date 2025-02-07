@@ -56,11 +56,11 @@ public class MightyMouseHM {
         driveFrontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         driveFrontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        armRotator.setDirection(DcMotor.Direction.REVERSE);
+        armRotator.setDirection(DcMotor.Direction.FORWARD);
         armRotator.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         armRotator.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        armRotator2.setDirection(DcMotor.Direction.FORWARD);
+        armRotator2.setDirection(DcMotor.Direction.REVERSE);
         armRotator2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         armRotator2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
